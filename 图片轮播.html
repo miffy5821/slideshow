@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amy图片轮播</title>
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+            font-family: "微软雅黑";
+        }
+        .main{
+            height:800px;
+            width:1500px;
+            margin-left:auto;
+            margin-right:auto;
+            overflow: hidden;
+            position:relative;
+        }
+        .banner{
+            height:800px;
+            width:1500px;
+            margin-left:auto;
+            margin-right:auto;
+
+        }
+        .banner-pit{
+            height:800px;
+            width:1500px;
+            margin-left:auto;
+            margin-right:auto;
+            background: red;
+        }
+        .pit1{
+            background: url(324912.jpg);
+            background-size: cover;
+        }
+        .pit2{
+            background: url(325427.jpg);
+        }
+        .pit3{
+            background: url(325451.jpg);
+        }
+        .pit4{
+            background: url(325526.jpg);
+        }
+        .pit5{
+            background: url(1000873.jpg);
+        }
+        .pit6{
+            background: url(1001856.jpg )
+        }
+        .button{
+            position:absolute;
+            width:40px;
+            height:60px;
+            left:400px;
+            top:40%;
+            margin-top:-40px;
+            background: url(pevr.png);
+            background-size:cover;
+            z-index:1;
+        }
+        .next{
+            background: url(pevr.png);
+            left:auto;
+            right:10px;
+            z-index:1;
+            background-size:cover;
+            transform: rotate(180deg);
+        }
+        .dots{
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            line-height: 12px;
+        }
+        .dots span{
+            display:inline-block;
+            width:12px;
+            height:12px;
+            border-radius: 50%;
+            background-color: rgba(7 17 27 0.4 );
+            margin-left: 8px;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.8)inset;
+            cursor: pointer;
+        }
+        .dots span.active{
+            background-color:#f0f0f0;
+            box-shadow: 0 0 0 2px rgba(7 17 27 0.4 )inset;
+        }
+        /*菜单*/
+        .menu-box{
+            position: absolute;
+            left:0;
+            top:0;
+
+        }
+        /*主菜单*/
+        .menu-content{
+            position: absolute;
+            left:0;
+            top:0;
+            width:400px;
+            height:800px;
+            background-color:rgba(255,255,255,0.5 );
+            z-index: 3;
+        }
+        .menu-item{
+            height:64px;
+            line-height: 66px;
+            cursor: pointer;
+            padding:0 24px;
+        }
+        .menu-item a{
+            position: relative;
+            display:block ;
+            color:black;
+            font-size: 16px;
+            height:60px;
+            width:350px;
+            left:0;
+            top:50px;
+            border-bottom: 1px solid rgba(255,255, 255,0.2);
+            text-decoration: none;
+        }
+        .menu-item:last-child a{
+            border-bottom: none;
+        }
+        a:link,a:visited{
+            color:#17823b;
+        }
+        .menu-item i{
+            position: absolute;
+            right: 30px;
+            top:5px;
+            font-size: 16px;
+            color:rgba(255,255,255,0.3);
+        }
+        /*子菜单*/
+        .sub-menu{
+            position:relative;;
+            top:25px;
+            left:400px;
+
+        }
+        .hide{
+            display:none;
+        }
+        .sub-inner-box {
+            position: absolute;
+            height:820px;
+            z-index: 2;
+            width:1300px;
+            top:-30px;
+            background:url("8345.jpg");
+            background-size: cover;
+            display:none;
+        }
+        .title{
+            font-size: 16px;
+            color:#b1aeb1;
+            line-height: 65px;
+            margin: 30px 0 30px 50px;
+        }
+        .sub-menu a{
+            color:#b1aeb1;
+            text-decoration: none;
+        }
+        .sub-rom{
+            margin-bottom: 20px;
+        }
+        .mr10{
+            margin-left: 50px;
+            margin-right: 5px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="menu-box"></div>
+    <!--子菜单-->
+    <div class="sub-menu" id="subMenu">
+        <div>
+            <div class="sub-inner-box hide" id="phone" onmouseover="phoneBlock()" onmouseout="phoneHide()">
+                <div class="title">手机、配件</div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">手机</a>
+                    <span>/</span>
+                    <a href="" class="mr10">手机维修</a>
+                    <span>/</span>
+                    <a href="" class="mr10">以旧换新</a>
+                </div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">蓝牙耳机</a>
+                    <span>/</span>
+                    <a href="" class="mr10">无线充电器</a>
+                    <span>/</span>
+                    <a href="" class="mr10">音响</a>
+                </div>
+            </div>
+            <div class="sub-inner-box hide" id="computer"  onmouseover="computerBlock()" onmouseout="computerHide()">
+                <div class="title">电脑</div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">苹果电脑</a>
+                    <span>/</span>
+                    <a href="" class="mr10">平板电脑</a>
+                    <span>/</span>
+                    <a href="" class="mr10">iMac电脑</a>
+                </div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">Mac Pro</a>
+                    <span>/</span>
+                    <a href="" class="mr10">Mac mini</a>
+                    <span>/</span>
+                    <a href="" class="mr10">MacBook Pro</a>
+                </div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">iMac</a>
+                    <span>/</span>
+                    <a href="" class="mr10">MacBook Pro 13英寸</a>
+                    <span>/</span>
+                    <a href="" class="mr10">MacBook Pro 16英寸</a>
+                </div>
+            </div>
+            <div class="sub-inner-box  hide" id="appliances"  onmouseover="appliancesBlock()" onmouseout="appliancesHide()">
+                <div class="title">家电电器</div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">冰箱</a>
+                    <span>/</span>
+                    <a href="" class="mr10">空调</a>
+                    <span>/</span>
+                    <a href="" class="mr10">洗衣机</a>
+                </div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">电磁炉</a>
+                    <span>/</span>
+                    <a href="" class="mr10">微波炉</a>
+                    <span>/</span>
+                    <a href="" class="mr10">烤箱</a>
+                </div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">电饭锅</a>
+                    <span>/</span>
+                    <a href="" class="mr10">炒锅</a>
+                    <span>/</span>
+                    <a href="" class="mr10">电热壶</a>
+                </div>
+            </div>
+            <div class="sub-inner-box  hide"  id="furniture"  onmouseover="furnitureBlock()" onmouseout="furnitureHide()">
+                <div class="title">家具</div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">电视柜</a>
+                    <span>/</span>
+                    <a href="" class="mr10">沙发</a>
+                    <span>/</span>
+                    <a href="" class="mr10">茶几</a>
+                    <span>/</span>
+                    <a href="" class="mr10">餐桌</a>
+                    <span>/</span>
+                    <a href="" class="mr10">椅子</a>
+                </div>
+                <div class="sub-rom">
+                    <a href="" class="mr10">床垫</a>
+                    <span>/</span>
+                    <a href="" class="mr10">衣柜</a>
+                    <span>/</span>
+                    <a href="" class="mr10">床头柜</a>
+                    <span>/</span>
+                    <a href="" class="mr10">化妆桌</a>
+                    <span>/</span>
+                    <a href="" class="mr10">全身镜</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--主菜单-->
+    <div class="menu-content">
+        <div class="menu-item" onmouseover="phoneBlock()" onmouseout="phoneHide()">
+            <a href="">
+                <span>手机、配件</span>
+                <i class='icon'> &rsaquo;</i>
+            </a>
+        </div>
+        <div class="menu-item" onmouseover="computerBlock()" onmouseout="computerHide()">
+            <a href="">
+                <span>电脑</span>
+                <i class='icon'> &rsaquo;</i>
+            </a>
+        </div>
+        <div class="menu-item" onmouseover="appliancesBlock()" onmouseout="appliancesHide()">
+            <a href="">
+               <span>家电电器</span>
+                <i class='icon'> &rsaquo;</i>
+           </a>
+       </div>
+        <div class="menu-item" onmouseover="furnitureBlock()" onmouseout="furnitureHide()">
+          <a href="">
+                <span>家具</span>
+                <i class='icon'> &rsaquo;</i>
+            </a>
+        </div>
+    </div>
+    <!--轮播图-->
+    <div class="banner" id="banner"  >
+        <a href="">
+            <div class="banner-pit pit1" id="img"></div>
+        </a>
+        <a href="">
+            <div class="banner-pit pit2"></div>
+        </a>
+        <a href="">
+            <div class="banner-pit pit3"></div>
+        </a>
+        <a href="">
+            <div class="banner-pit pit4"></div>
+        </a>
+        <a href="">
+            <div class="banner-pit pit5"></div>
+        </a>
+        <a href="">
+            <div class="banner-pit pit6"></div>
+        </a>
+    </div>
+    <a href="javascript:void(0)" class="button prev" id="prev"></a>
+    <a href="javascript:void(0)"  class="button next" id="next"></a>
+    <div class="dots" id="dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<script>
+    var index=0,//第一张图片的索引
+        timer=null,
+        main=byId("main"),
+        prev=byId("prev"),
+        next=byId("next"),
+        pics=byId("banner").getElementsByTagName("div"),
+        dots=byId("dots").getElementsByTagName("span"),
+        size=pics.length;
+    //封装 getElementById()
+    function byId(id){
+        return typeof(id)==="string" ? document.getElementById(id):id;
+    }
+    /*封装通用事件绑定方法
+    * element 绑定事件的DOM元素
+    * 事件名
+    * 事件处理程序
+    * */
+    function addHandler(element,type,handler){
+        //非IE浏览器
+        if(element.addEventListener){
+            element.addEventListener(type,handler)}
+        //IE浏览器
+        else if(element.attachEvent){
+            element.attachEvent('on'+type,handler);}
+        //IE浏览器不支持DOM2事件
+        else{element['on'+type]=handler;
+        }
+    }
+    //清除定时器，停止自动轮播
+    function stop(){
+            clearInterval(timer);
+    }
+    //自动开启轮播
+    function Play(){
+        timer=setInterval( function() {
+            index++;
+            if (index >= size) index = 0;
+            for (var i = 0; i < size; i++) {
+                pics[i].style.display = "none";
+                dots[i].className = '';
+            }
+            pics[index].style.display = 'block';
+            dots[index].className = 'active';
+        },3000)
+    }
+    // 点击下一张按钮显示下一张图片
+    addHandler(next,'click',function(){
+        index++;
+        if(index>=size)index=0;
+        for(var i=0;i<size;i++){
+            pics[i].style.display="none";
+            dots[i].className='';
+        }
+        pics[index].style.display='block';
+        dots[index].className='active';
+    });
+    // 点击上一张按钮显示上一张图片
+    addHandler(prev,'click',function(){
+        index--;
+        if(index<0)index=size-1;
+        for(var i=0;i<size;i++){
+            pics[i].style.display="none";
+            dots[i].className='';
+        }
+        pics[index].style.display='block';
+        dots[index].className='active';
+    })
+    // 点击圆点切换图片
+    for(var d=0;d<size;d++){
+        dots[d].setAttribute("data-id",d);
+        addHandler(dots[d],'click',function(){
+            index=this.getAttribute("data-id");
+            for(var i=0;i<size;i++){
+                pics[i].style.display="none";
+                dots[i].className='';
+            }
+            pics[index].style.display='block';
+            dots[index].className='active';
+        })
+    }
+    var banner=document.getElementById('banner');
+    //鼠标滑入banner，停止轮播
+    banner.onmouseover=stop;
+    //鼠标离开banner，继续轮播
+    banner.onmouseout=Play;
+    //自动开启轮播
+    Play();
+
+
+    //鼠标滑入手机主菜单时，子菜单显示
+    function phoneBlock(t){
+        document.getElementById("phone").style.display='block';
+    }
+    phoneBlock();
+    //鼠标离开手机主、子菜单，子菜单隐藏
+    function phoneHide(t){
+        document.getElementById("phone").style.display='none';
+    }
+    phoneHide();
+
+    //鼠标滑入电脑主菜单时，子菜单显示
+     function computerBlock(c){
+         document.getElementById("computer").style.display='block';
+     }
+     computerBlock();
+    //鼠标离开电脑主、子菜单，子菜单隐藏
+     function computerHide(c){
+         document.getElementById("computer").style.display='none';
+     }
+    computerHide();
+
+    //鼠标滑入家电主菜单时，子菜单显示
+    function appliancesBlock(a){
+        document.getElementById("appliances").style.display='block';
+    }
+    appliancesBlock();
+    //鼠标离开家电主、子菜单，子菜单隐藏
+    function appliancesHide(a){
+        document.getElementById("appliances").style.display='none';
+    }
+    appliancesHide();
+
+    //鼠标滑入家具主菜单时，子菜单显示
+    function furnitureBlock(f){
+        document.getElementById("furniture").style.display='block';
+    }
+    furnitureBlock();
+    //鼠标离开家具主、子菜单，子菜单隐藏
+    function furnitureHide(f){
+        document.getElementById("furniture").style.display='none';
+    }
+    furnitureHide();
+
+</script>
+</body>
+</html>
